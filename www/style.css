@@ -94,3 +94,13 @@ h2 {
 #markdown-content li {
 	margin-bottom: 0.8rem;
 }
+
+#markdown-content h1 {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+#markdown-content p,
+#markdown-content li {
+	text-align: left;
+}
