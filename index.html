@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Basic starter template" />
+	<title>Shogi Sensei</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<nav class="top-nav">
+		<div class="container nav-inner">
+			<a href="#proposta" class="nav-item" id="proposta-link">Proposta</a>
+			<a href="#" class="nav-item">Monografia</a>
+			<a href="#" class="nav-item">Repositório</a>
+			<a href="#" class="nav-item">Demo</a>
+		</div>
+	</nav>
+
+	<main class="container">
+		<section>
+			<h2>Trabalho de Conclusão de Curso</h2>
+			<p>Aluno: Vinícius Yuiti Okuma Shimizu</p>
+			<p>Orientador: Denis Deratani Maua</p>
+		</section>
+
+		<section class="content-panel">
+			<article id="markdown-content">
+				<!-- <p>Select an option in the top bar to load content.</p> -->
+			</article>
+		</section>
+	</main>
+
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<script>
+		const propostaLink = document.getElementById("proposta-link");
+		const markdownContent = document.getElementById("markdown-content");
+
+		async function loadMarkdown(filePath, errorMessage) {
+			try {
+				const response = await fetch(filePath);
+
+				if (!response.ok) {
+					throw new Error("Unable to load markdown file");
+				}
+
+				const markdownText = await response.text();
+				markdownContent.innerHTML = marked.parse(markdownText);
+			} catch (error) {
+				markdownContent.innerHTML = `<p>${errorMessage}</p>`;
+			}
+		}
+
+		async function loadProposta(event) {
+			event.preventDefault();
+			await loadMarkdown("proposta.md", "Could not load Proposta content right now.");
+		}
+
+		propostaLink.addEventListener("click", loadProposta);
+		loadMarkdown("intro.md", "Could not load Intro content right now.");
+	</script>
+
+</body>
+</html>
