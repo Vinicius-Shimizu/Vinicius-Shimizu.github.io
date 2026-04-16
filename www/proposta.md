@@ -15,7 +15,15 @@ Este trabalho, portanto, tem como objetivo desenvolver uma ferramenta de apoio a
 
 ## Metodologia
 <p>
-A biblioteca do Python chamada cshogi e partidas reais serão utilizadas para gerar diversos tabuleiros, simulando situações reais. Para gerar as soluções destes exercícios, será utilizada uma engine chamada Yaneuraou, especialista em avaliar jogos e prever as melhores jogadas.
+A biblioteca do Python denominada cshogi, em conjunto com partidas reais, será utilizada para a obtenção de diferentes posições de jogo. Para a geração das soluções desses exercícios, será utilizada uma engine especializada, Yaneuraou, capaz de avaliar posições e sugerir as melhores jogadas. Para exercícios mais básicos, as soluções poderão ser definidas manualmente.
 <p>
-
+<p>
+As questões serão organizadas por temas, como "Movimentação", "Regras", "Aberturas" e "Defesas", e apresentarão tanto aspectos práticos quanto teóricos, exigindo que o usuário escolha jogadas corretas ou identifique a estratégia utilizada. Cada tema será desbloqueado a partir de uma pontuação mínima no tema anterior, promovendo uma progressão gradual e compatível com o nível do jogador.
+<p>
+<p>
+O progresso do usuário será avaliado com base em métricas como taxa de acerto ao longo de um número determinado de tentativas, de forma a reduzir a influência de respostas aleatórias. Além disso, outras métricas, como tempo médio de resposta e desempenho por categoria, serão utilizadas para analisar o aprendizado do usuário.
+<p>
+<p>
+Para avaliar o desempenho da abordagem apresentada neste trabalho, um grupo de 10-20 pessoas utilizará o sistema por 1-2 semanas. As informações coletadas serão armazenadas num banco de dados, local ou na nuvem, para acompanhar a evolução deste grupo e a eficácia do método adotado. 
+<p>
 ## Cronograma
