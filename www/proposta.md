@@ -26,4 +26,5 @@ O progresso do usuário será avaliado com base em métricas como taxa de acerto
 <p>
 Para avaliar o desempenho da abordagem apresentada neste trabalho, um grupo de 10-20 pessoas utilizará o sistema por 1-2 semanas. As informações coletadas serão armazenadas num banco de dados, local ou na nuvem, para acompanhar a evolução deste grupo e a eficácia do método adotado. 
 <p>
+
 ## Cronograma
