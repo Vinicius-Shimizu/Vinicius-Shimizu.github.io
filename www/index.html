@@ -9,10 +9,11 @@
 <body>
 	<nav class="top-nav">
 		<div class="container nav-inner">
+			<a href="#resumo" class="nav-item" id="resumo-link">Resumo</a>
 			<a href="#proposta" class="nav-item" id="proposta-link">Proposta</a>
-			<a href="#" class="nav-item">Monografia</a>
-			<a href="#" class="nav-item">Repositório</a>
-			<a href="#" class="nav-item">Demo</a>
+			<a href="#" class="nav-item" id="monografia-link">Monografia</a>
+			<a href="#" class="nav-item" id="repositorio-link">Repositório</a>
+			<a href="#" class="nav-item" id="demo-link">Demo</a>
 		</div>
 	</nav>
 
@@ -32,7 +33,11 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script>
+		const resumoLink = document.getElementById("resumo-link");
 		const propostaLink = document.getElementById("proposta-link");
+		const monografiaLink = document.getElementById("monografia-link");
+		const repositorioLink = document.getElementById("repositorio-link");
+		const demoLink = document.getElementById("demo-link");
 		const markdownContent = document.getElementById("markdown-content");
 
 		async function loadMarkdown(filePath, errorMessage) {
@@ -50,12 +55,31 @@
 			}
 		}
 
+		async function loadResumo(event) {
+			event.preventDefault();
+			await loadMarkdown("intro.md", "Could not load Resumo content right now.");
+		}
+
 		async function loadProposta(event) {
 			event.preventDefault();
 			await loadMarkdown("proposta.md", "Could not load Proposta content right now.");
 		}
 
+		function loadWorkInProgress(event) {
+			event.preventDefault();
+			markdownContent.innerHTML = "<h2>Work in Progress</h2><p>This section is not available yet.</p>";
+		}
+
+		function openRepositorio(event) {
+			event.preventDefault();
+			window.open("https://github.com/Vinicius-Shimizu/Shogi-sensei", "_blank", "noopener,noreferrer");
+		}
+
+		resumoLink.addEventListener("click", loadResumo);
 		propostaLink.addEventListener("click", loadProposta);
+		monografiaLink.addEventListener("click", loadWorkInProgress);
+		demoLink.addEventListener("click", loadWorkInProgress);
+		repositorioLink.addEventListener("click", openRepositorio);
 		loadMarkdown("intro.md", "Could not load Intro content right now.");
 	</script>
 
