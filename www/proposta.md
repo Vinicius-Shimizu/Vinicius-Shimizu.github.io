@@ -24,6 +24,10 @@ Para avaliar o desempenho da abordagem apresentada neste trabalho, um grupo de 1
 
 ## Cronograma
 
-Abril - Maio: Desenvolvimento do gerador de exercicios
-Junho - Agosto: Desenvolvimento do backend e frontend do sistema
+Abril - Junho: Desenvolvimento do gerador de exercicios
+
+Junho - Agosto: Desenvolvimento do backend do sistema
+
+Agosto - Setembro: Desenvolvimento da interface do sistema
+
 Setembro - Novembro: Análise dos dados do experimento e escrita da monografia
