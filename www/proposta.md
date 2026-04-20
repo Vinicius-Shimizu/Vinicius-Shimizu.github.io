@@ -23,3 +23,7 @@ O progresso do usuário será avaliado com base em métricas como taxa de acerto
 Para avaliar o desempenho da abordagem apresentada neste trabalho, um grupo de 10 a 20 participantes utilizará o sistema por 1-2 semanas. As informações coletadas serão armazenadas num banco de dados, local ou na nuvem, para acompanhar a evolução deste grupo e a eficácia do método adotado. 
 
 ## Cronograma
+
+Abril - Maio: Desenvolvimento do gerador de exercicios
+Junho - Agosto: Desenvolvimento do backend e frontend do sistema
+Setembro - Novembro: Análise dos dados do experimento e escrita da monografia
