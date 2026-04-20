@@ -1,1 +1,3 @@
 ## Resumo
+
+Este trabalho, tem como objetivo desenvolver uma ferramenta de apoio ao ensino do shogi voltada para iniciantes. O sistema proposto organiza o conteúdo em etapas, abordando desde a movimentação das peças até conceitos estratégicos básicos, como aberturas e defesas. Além disso, o usuário receberá feedback sobre seu desempenho de forma clara e visual, enquanto o sistema sugere exercícios de acordo com as dificuldades identificadas, promovendo um aprendizado mais orientado e eficiente.
