@@ -18,6 +18,7 @@ class ExerciseService:
             "/yaneuraou/yaneuraou"
         )
 
+        self.modules = ["recon", "checkmate-in-one", "drop"]
 
     def fetch_games(self):
         games = []
@@ -61,7 +62,6 @@ class ExerciseService:
             batch_processed = True
             games = self.raw_games_repo.get_random(limit=300)
         exercises = self.generator.recon(games)
-        print(exercises)
         if exercises:
             self.exercise_repo.bulk_insert(exercises)
 
@@ -88,6 +88,58 @@ class ExerciseService:
         if not user_status:
             return None
         return self.exercise_repo.get_exercises_list(user_status.modules_probs)
+
+
+    def update_modules_probs(self, user_id: int):
+        user_status = self.user_status_repo.get_by_id(user_id)
+        if not user_status or not user_status.recent_performances:
+            return
+        
+        current_module = user_status.current_module
+        performance_totals = {
+            module: 0.0 
+            for module in user_status.modules_probs
+        }
+        performance_counts = {
+            module:0
+            for module in user_status.modules_probs
+        }
+
+        
+        for performance in user_status.recent_performances:
+            for module, score in performance.items():
+                performance_totals[module] += score
+                performance_counts[module] += 1
+
+        average_performance = {}
+        for module in performance_totals:
+            if performance_counts[module] > 0:
+                average_performance[module] = (
+                    performance_totals[module]
+                    / performance_counts[module]
+                )
+
+        new_probs = dict(user_status.modules_probs)
+        
+        user_status.module_progress = average_performance.get(current_module, 0)
+        for module, score in average_performance.items():
+            if user_status.modules_probs[module] == 0: continue
+            if score < 0.7: new_probs[module] *= 1.2
+            else: new_probs[module] *= 0.75
+
+        if performance_counts[current_module] >= 2 and average_performance.get(current_module, 0) >= 0.8:
+            current_index = self.modules.index(current_module)
+            if current_index + 1 < len(self.modules):
+                next_module = self.modules[current_index + 1]
+                user_status.current_module = next_module
+                new_probs[next_module] = 0.8
+                user_status.module_progress = 0.0
+
+        total = sum(new_probs.values())
+        for module in new_probs:
+            new_probs[module] /= total
+
+        user_status.modules_probs = new_probs
 
     def submit_answers(self, user_id: int, answers: list[ExerciseAnswer]):
         results = []
@@ -132,9 +184,15 @@ class ExerciseService:
         user_status.recent_performances = (
             user_status.recent_performances + [score_per_module]
         )[-10:]
+
+        
+
+        self.update_modules_probs(user_id)
         self.session.commit()
 
         score = 100*sum(result.is_correct for result in results) / len(results)
+
+
         return ExerciseListResult(
             user_id=user_id,
             score=score,

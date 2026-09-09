@@ -37,7 +37,7 @@ PIECES_DICT = {
     "K": "Rei",
     "+P": "Peão Promovido",
     "+L": "Lança Promovida",
-    "+N": "cavalo Promovido",
+    "+N": "Cavalo Promovido",
     "+S": "General de Prata Promovido",
     "+B": "Bispo promovido",
     "+R": "Torre Promovida",
