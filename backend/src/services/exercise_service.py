@@ -127,7 +127,7 @@ class ExerciseService:
             if score < 0.7: new_probs[module] *= 1.2
             else: new_probs[module] *= 0.75
 
-        if performance_counts[current_module] >= 2 and average_performance.get(current_module, 0) >= 0.8:
+        if performance_counts[current_module] >= 10 and average_performance.get(current_module, 0) >= 0.8:
             current_index = self.modules.index(current_module)
             if current_index + 1 < len(self.modules):
                 next_module = self.modules[current_index + 1]
