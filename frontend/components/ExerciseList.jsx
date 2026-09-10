@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Exercise from "./Exercise";
+import ResultsPage from "./ResultsPage";
+
 
 export default function ExerciseList() {
   const [exercises, setExercises] = useState([]);
@@ -67,6 +69,12 @@ export default function ExerciseList() {
     }
   }
 
+  function handleRestart(){
+    setCurrentExercise(0);
+    setAnswers([]);
+    setResult(null);
+  }
+
   function handleAnswer(answer) {
     const exercise = exercises[currentExercise];
 
@@ -101,24 +109,7 @@ export default function ExerciseList() {
   }
 
   if (result) {
-    return (
-      <div>
-        <h2>Resultado</h2>
-
-        <p>
-          Você acertou {result.score}%
-        </p>
-
-        {result.results.map((exerciseResult, index) => (
-          <div key={exerciseResult.exercise_id}>
-            <p>
-              Exercício {index + 1}:{" "}
-              {exerciseResult.is_correct ? "O" : "X"}
-            </p>
-          </div>
-        ))}
-      </div>
-    );
+    return <ResultsPage result={result} onRestart={handleRestart}/>
   }
 
   return (
